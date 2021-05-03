@@ -2,11 +2,12 @@ import turtle
 
 DEFAULT_SIDE = 10
 
-def draw_triangle(pen, l):
+def draw_triangle(pen, l, rotate=0):
 	# triangle or triangle-like motif!
+	R = (rotate + 1) % 3 
 
 	for i in range(0,3):
-		if i == 1:
+		if i == R:
 			pen.forward(l/2)
 			pen.left(60)
 			pen.forward(l/2)
@@ -37,24 +38,24 @@ def move_to_start(pen, l, i):
 
 	return i
 
-def draw_generation(pen, l, i):
+def draw_generation(pen, l, i, r=0):
 	# generation = i
 
 	pen.pendown()
 
 	if i <= 0:
-		draw_triangle(pen, l)
+		draw_triangle(pen, l, r)
 
 	else:
 		for n in range(0,3):
-			draw_generation(pen, l, i-1)
+			draw_generation(pen, l, i-1, r-n)
 			pen.forward(2**i * l)
 			pen.left(120)
 
 		# now fill in centre
 		pen.forward(2**(i-1) * l)
 		pen.left(60)
-		draw_generation(pen, l, i-1)
+		draw_generation(pen, l, i-1, r)
 
 		# restore position
 		pen.right(60)
@@ -83,8 +84,7 @@ def draw_recursive(pen, l, N, i=0):
 
 def main():
 
-	generations = 4
-
+	generations = 6
 
 	my_window = turtle.Screen()
 	my_window.clear()
