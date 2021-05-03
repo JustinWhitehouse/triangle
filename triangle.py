@@ -51,6 +51,16 @@ def draw_generation(pen, l, i):
 			pen.forward(2**i * l)
 			pen.left(120)
 
+		# now fill in centre
+		pen.forward(2**(i-1) * l)
+		pen.left(60)
+		draw_generation(pen, l, i-1)
+
+		# restore position
+		pen.right(60)
+		pen.backward(2**(i-1) * l)
+
+
 	return i
 
 
