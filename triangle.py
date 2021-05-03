@@ -3,8 +3,20 @@ import turtle
 DEFAULT_SIDE = 10
 
 def draw_triangle(pen, l):
+	# triangle or triangle-like motif!
+
 	for i in range(0,3):
-		pen.forward(l)
+		if i == 1:
+			pen.forward(l/2)
+			pen.left(60)
+			pen.forward(l/2)
+			pen.backward(l/2)
+			pen.right(60)
+			pen.forward(l/2)
+
+		else:
+			pen.forward(l)
+			
 		pen.left(120)
 
 	return None
@@ -69,9 +81,6 @@ def main():
 	my_pen = turtle.Turtle()
 	my_pen.speed(0)
 
-
-	#draw_triangle(my_pen, DEFAULT_SIDE)
-	#draw_recursive(my_pen, DEFAULT_SIDE, 4)
 	move_to_start(my_pen, DEFAULT_SIDE, generations)
 	draw_generation(my_pen, DEFAULT_SIDE, generations)
 
