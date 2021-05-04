@@ -95,7 +95,7 @@ def draw_recursive(pen, l, N, i=0):
 
 def main():
 
-	generations = 3
+	generations = 4
 	DEFAULT_SIDE = 2 ** (10 - generations)
 	my_window = turtle.Screen()
 	my_window.clear()
